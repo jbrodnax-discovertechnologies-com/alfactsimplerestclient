@@ -3,5 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="C:/Users/jbrodnax/Desktop/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jbrodnax/Desktop/bin/Activiti/activiti-5.19.0.2/activiti-5.19.0.2/libs/activiti-engine-5.19.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jbrodnax/Desktop/httpmime-4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jbrodnax/Desktop/httpcore-4.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jbrodnax/Desktop/httpclient-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jbrodnax/Desktop/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jbrodnax/Desktop/JSONUtil-1.7.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
