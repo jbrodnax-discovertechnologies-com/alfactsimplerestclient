@@ -52,10 +52,12 @@ public class ActivitiRestProcessStart {
 			//add parts
 			entity.addPart("file", fb);
 			entity.addPart("filename", new StringBody("testfile.docx"));
+			//send document:
 			HttpEntity postEntity = entity.build();
 			postConn.setEntity(postEntity);
+			//get response,
 			HttpResponse response = client.execute(postConn);
-
+			//get contentID from JSON response
 			HttpEntity responseEntity = response.getEntity();
             InputStream instream = responseEntity.getContent();
             BufferedReader reader = new BufferedReader(new InputStreamReader(instream));
@@ -67,8 +69,11 @@ public class ActivitiRestProcessStart {
             String result = sb.toString();
 			JSONObject myObject = new JSONObject(result);
 			String contentId = myObject.getString("id");
-			
+			//close first client
+			client.close();
+			//create new client
 			CloseableHttpClient pclient = HttpClients.createDefault();
+			//create process instance post
 			HttpPost ppostConn = new HttpPost(url + "process-instances");
 			ppostConn.setHeader("Authorization", "Basic " + encoding);
 			StringEntity params = new StringEntity("{\"processDefinitionId\":"
@@ -82,7 +87,9 @@ public class ActivitiRestProcessStart {
 					+ "}");
 			ppostConn.addHeader("Content-Type", "application/json");
 			ppostConn.setEntity(params);
+			//get response
 			HttpResponse presponse = client.execute(ppostConn);
+			//for debug:
 //			HttpEntity responseEntity2 = response.getEntity();
 //            InputStream instream2 = responseEntity2.getContent();
 //            BufferedReader reader2 = new BufferedReader(new InputStreamReader(instream));
@@ -93,8 +100,11 @@ public class ActivitiRestProcessStart {
 //            }
 //            String result2 = sb2.toString();
 //			JSONObject myObject2 = new JSONObject(result);
+			//get stuff back
 			System.out.println("Status code:" + presponse.getStatusLine().toString() + " | " + "Content ID: " + contentId) ;
-
+			//close second client
+			pclient.close();
+			
 		  } catch (MalformedURLException e) {
 
 			e.printStackTrace();
